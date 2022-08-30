@@ -113,3 +113,8 @@ Werkzeug==2.2.2
 wrapt==1.14.1
 WTForms==2.3.3
 zipp==3.8.1
+pandas
+pydantic
+requests
+typing
+boto3
