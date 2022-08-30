@@ -6,9 +6,9 @@ import os
 import pandas as pd
 from datetime import datetime
 from typing import Optional
-from credentials import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+from credential import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
-from models import Astronomy, City, Weather
+from Model import Astronomy, City, Weather
 
 
 
