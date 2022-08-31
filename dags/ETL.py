@@ -59,7 +59,7 @@ def process():
 
 dag = DAG(dag_id = "Weather_01",
         schedule_interval = '@once',
-        start_date  = datetime.datetime(2022, 8, 28,),
+        start_date  = datetime.datetime(2022, 8, 31),
         catchup = False,
         )
 
