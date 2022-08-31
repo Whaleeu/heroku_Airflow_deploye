@@ -24,7 +24,7 @@ def process():
     data to s3 bucket in on call
     """
 
-    state = pd.read_csv("/app/dags/list_of_capitals.csv").dropna()
+    state = pd.read_csv("/app/dags/list__of__capitals.csv").dropna()
     capitals = state['Capital'].values
 
     # Extractboto
