@@ -7,6 +7,13 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 
 
+dag = DAG(dag_id = "Weather_01",
+        schedule_interval = '@once',
+        start_date  = datetime.datetime(2022, 8, 31),
+        catchup = False,
+        )
+
+
 def process():
     """ 
     ---------------
@@ -57,25 +64,19 @@ def process():
             break
 
 
-dag = DAG(dag_id = "Weather_01",
-        schedule_interval = '@once',
-        start_date  = datetime.datetime(2022, 8, 31),
-        catchup = False,
-        )
-
 def display_logs():
     print("All Executed")
 
 
 # Execute
-task_1_etl = PythonOperator(task_id = "etl_task",
+task_1_etl = PythonOperator(task_id = "Etl_task",
                                 python_callable = process,
-                                dag = dag
+                                dag = dag,
                                 )
 
 task_2_notification = PythonOperator(task_id = "Notify",
                         python_callable = display_logs,
-                        dag = dag
+                        dag = dag,
                         )
 
 task_1_etl >> task_2_notification
