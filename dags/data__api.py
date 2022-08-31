@@ -5,7 +5,7 @@ import json
 
 
 
-state = pd.read_csv("list_of_capitals.csv").dropna()
+state = pd.read_csv("list__of__capitals.csv").dropna()
 state_c = state.drop("State", axis=1)
 
 
