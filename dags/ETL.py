@@ -4,10 +4,24 @@ from processes import ParseFile, create_filestreams, load_file, upload_files
 from data__api import gen_state
 import datetime
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.bash_operator import BashOperator
+from airflow.operators.email_operator import EmailOperator
+from airflow.operators.dagrun_operator import TriggerDagRunOperator
+from datetime import datetime, timedelta
+from airflow.utils.email import send_email
+from airflow.utils.dates import days_ago
+from airflow.models import Variablefrom airflow.operators.python import PythonOperator
+
+
+dag_email_recipient = "whaleeu@gmail.com"
+default_args = {
+   'email': dag_email_recipient,
+   'email_on_failure': True,}
+
 
 
 dag = DAG(dag_id = "Weather_01",
+        default_args=default_args,   
         schedule_interval = '@once',
         start_date  = datetime.datetime(2022, 8, 31),
         catchup = False,
@@ -64,8 +78,10 @@ def process():
             break
 
 
-def display_logs():
-    print("All Executed")
+success_email_body = f"""
+Hi, <br><br>
+process_incoming_files DAG has been executed successfully at {datetime.now()}.
+"""
 
 
 # Execute
@@ -74,9 +90,11 @@ task_1_etl = PythonOperator(task_id = "Etl_task",
                                 dag = dag,
                                 )
 
-task_2_notification = PythonOperator(task_id = "Notify",
-                        python_callable = display_logs,
-                        dag = dag,
-                        )
+send_mail = EmailOperator(
+    task_id="send_mail",
+    to=dag_email_recipient,
+    subject='Airflow Success: process_incoming_files',
+    html_content=success_email_body,
+    dag=dag)
 
-task_1_etl >> task_2_notification
+task_1_etl >> send_mail
