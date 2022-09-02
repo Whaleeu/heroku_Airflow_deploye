@@ -10,7 +10,8 @@ from airflow.operators.dagrun_operator import TriggerDagRunOperator
 from datetime import datetime, timedelta
 from airflow.utils.email import send_email
 from airflow.utils.dates import days_ago
-from airflow.models import Variablefrom airflow.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator
+
 
 
 dag_email_recipient = "whaleeu@gmail.com"
