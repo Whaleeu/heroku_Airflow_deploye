@@ -7,7 +7,7 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.email_operator import EmailOperator
 from airflow.operators.dagrun_operator import TriggerDagRunOperator
-from datetime import datetime, timedelta
+from datetime import timedelta
 from airflow.utils.email import send_email
 from airflow.utils.dates import days_ago
 from airflow.operators.python import PythonOperator
@@ -24,7 +24,7 @@ default_args = {
 dag = DAG(dag_id = "Weather_01",
         default_args=default_args,   
         schedule_interval = '@once',
-        start_date  = datetime.datetime(2022, 8, 31),
+        start_date  = datetime.datetime(2022, 9, 2),
         catchup = False,
         )
 
@@ -81,8 +81,7 @@ def process():
 
 success_email_body = f"""
 Hi, <br><br>
-process_incoming_files DAG has been executed successfully at {datetime.now()}.
-"""
+process_incoming_files DAG has been executed successfully at {datetime.datetime.now()}."""
 
 
 # Execute
