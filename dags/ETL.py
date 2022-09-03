@@ -81,7 +81,7 @@ def process():
 
 success_email_body = f"""
 Hi, <br><br>
-process_incoming_files DAG has been executed successfully at {datetime.datetime.now()}."""
+Today's weather data is now available @ datetime.datetime.now()}."""
 
 
 # Execute
