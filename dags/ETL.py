@@ -23,7 +23,7 @@ default_args = {
 
 dag = DAG(dag_id = "Weather_01",
         default_args=default_args,   
-        schedule_interval = '@once',
+        schedule_interval = '0 6,18 * * *',
         start_date  = datetime.datetime(2022, 9, 2),
         catchup = False,
         )
