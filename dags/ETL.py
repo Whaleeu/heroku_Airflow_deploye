@@ -81,7 +81,7 @@ def process():
 
 success_email_body = f"""
 Hi, <br><br>
-Today's weather data is now available @ datetime.datetime.now()}."""
+Today's weather data is now available @ {datetime.datetime.now()}."""
 
 
 # Execute
