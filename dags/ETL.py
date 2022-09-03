@@ -14,7 +14,7 @@ from airflow.operators.python import PythonOperator
 
 
 
-dag_email_recipient = "whaleeu@gmail.com"
+dag_email_recipient = ["whaleeu@gmail.com","muhammadyakub181@gmail.com"]
 default_args = {
    'email': dag_email_recipient,
    'email_on_failure': True,}
